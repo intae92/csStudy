@@ -5,32 +5,20 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 // let input = [];
-// let max;
 rl.on("line", function (line) {
-  solution(line);
+  console.log(solution(Number(line)));
   // input.push(line);
 }).on("close", function () {
   // solution(input);
   process.exit();
 });
 
-const asciiNumberMinus = (w) => {
-  const MINUS = 97;
-  return w.charCodeAt() - MINUS;
+const solution = (input) => {
+  if (input === 1) return 1;
+  if (input === 0) return 0;
+  return solution(input - 2) + solution(input - 1);
 };
 
-const solution = (word) => {
-  const answer = Array(26)
-    .fill(null)
-    .map((v) => -1);
-  // console.log(answer);
-
-  for (let idx = 0; idx < word.length; idx++) {
-    const position = asciiNumberMinus(word[idx]);
-    if (answer[position] === -1) answer[position] = idx;
-  }
-  return console.log(answer.join(" "));
-};
-//a97 ~ z122
+//대문자 65~90
+//소문자 97~112
 //26개
-//0~25
